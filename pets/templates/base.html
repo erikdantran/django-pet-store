@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block styles %} {% endblock %}
+
+    <title>{% block title %}PetStore{% endblock %}</title>
+  </head>
+
+  <body>
+    <center>
+      <a href="{% url 'pets:index'%}">
+        <h1 class="title">Madison Pet Store</h1>
+      </a>
+    </center>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+  </body>
+</html>
+
+{% block script %} {% endblock %}

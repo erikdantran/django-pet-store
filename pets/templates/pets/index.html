@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  {% load static %}
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static '/pets/homePage.css' %}"
+  />
+  {% endblock %}
+
+  {% block title%} Pet Store {% endblock %}
+
+{% block content%}
+<center>
+    <a href="{% url 'pets:add_pet' %}">
+      <button>Add new pet</button>
+    </a>
+
+    <form action="{% url 'pets:search' %}" method="post">
+      {% csrf_token %}
+      <input type="text" class="search-bar" name="search" placeholder="Search by Animal"></input>
+      <input type="submit" value="Search" />
+    </form>
+  </center>
+    <div class="container">
+
+      {% for pet in pet_list %}
+      <a href="{% url 'pets:detail' pet.id %}" style="display:block">
+
+      {% if pet.sold %}
+      {% comment %}
+        if pet is already sold, grey out the div
+      {% endcomment %}
+      <div class="petBox" id="{{pet.id}}" style="opacity: 0.5">
+
+        {% else %}
+      <div class="petBox" id="{{pet.id}}">
+
+        {% endif %}
+        <div class="image">
+          <img src="{{pet.imageUrl}}" />
+        </div>
+
+        <div class="info">
+          <b><div class="name">{{pet.name}}</div></b>
+          <div>Age: {{pet.age}}</div>
+          <div>Breed: {{pet.breed}}</div>
+        </div>
+      </div>
+    </a>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+

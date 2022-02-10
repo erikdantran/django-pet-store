@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block content%}
+
+<center>
+  <h1>Add new pet</h1>
+  <br />
+  {% if submitted %}
+   Your pet was added
+
+  {% else %}
+  <form action="{% url 'pets:add_pet' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add pet" />
+  </form>
+</center>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+{% comment %}
+<form
+  class="add_pet_form"
+  id="add_pet"
+  action="{% url 'pets:add_pet' %}"
+  method="post"
+>
+  {% csrf_token %}
+  <label for="Name">Name:</label>
+  <input type="text" class="add-pets-inputs" id="name" name="name" /><br />
+
+  <label for="Breed">Breed:</label>
+  <input type="text" class="add-pets-inputs" id="breed" name="breed" /><br />
+
+  <label for="Age">Age:</label>
+  <input type="number" class="add-pets-inputs" id="age" name="age" /><br />
+
+  <label for="Color">Color:</label>
+  <input type="text" class="add-pets-inputs" id="color" name="color" /><br />
+
+  <label for="category">Category:</label>
+  <input
+    type="text"
+    class="add-pets-inputs"
+    id="category"
+    name="category"
+  /><br />
+
+  <label for="imageUrl">Image URL:</label>
+  <input
+    type="text"
+    class="add-pets-inputs"
+    id="imageUrl"
+    name="imageUrl"
+  /><br />
+
+  <label for="description">Description:</label>
+  <input
+    type="text"
+    class="add-pets-inputs"
+    id="description"
+    name="description"
+  /><br />
+
+  <input type="submit" value="add_pet" />
+</form>
+{% endcomment %}
